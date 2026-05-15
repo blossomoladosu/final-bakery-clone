@@ -96,7 +96,17 @@ class OwnerDashboard:
             st.info("No inventory items available.")
             return
 
-        st.table(self.manager.inventory)
+        inventory_display = []
+
+        for item in self.manager.inventory:
+            inventory_display.append({
+                "Item ID": item["item_id"],
+                "Name": item["name"],
+                "Price": format_price(item["price"]),
+                "Stock": item["stock"]
+            })
+
+        st.table(inventory_display)
 
 
     def restock_inventory(self):

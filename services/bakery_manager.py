@@ -108,6 +108,17 @@ class BakeryManager:
         if quantity > selected_item["stock"]:
             return "Not enough stock available."
 
+        for cart_item in cart:
+            if cart_item["item_id"] == selected_item["item_id"]:
+
+                new_quantity = cart_item["quantity"] + quantity
+
+                if new_quantity > selected_item["stock"]:
+                    return "Not enough stock available."
+
+                cart_item["quantity"] = new_quantity
+                return "Success"
+
         cart.append({
             "item_id": selected_item["item_id"],
             "item_name": selected_item["name"],
@@ -116,7 +127,7 @@ class BakeryManager:
         })
 
         return "Success"
-
+    
     def checkout(self, cart: List[Dict], user_email: str):
         order_number = generate_order_number(self.orders)
         transaction_id = str(uuid.uuid4())

@@ -9,7 +9,7 @@
         "item_id": 2,
         "name": "Muffin",
         "price": 1.5,
-        "stock": 24
+        "stock": 29
     },
     {
         "item_id": 3,
@@ -21,7 +21,7 @@
         "item_id": 4,
         "name": "Croissant",
         "price": 2.75,
-        "stock": 38
+        "stock": 36
     },
     {
         "item_id": 5,

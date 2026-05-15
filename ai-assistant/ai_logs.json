@@ -63,5 +63,10 @@
         "user_email": "customer@bakery.com",
         "user_message": "Can I cancel a placed order?",
         "ai_response": "AI assistant is currently unavailable because the OpenAI API quota has been exceeded."
+    },
+    {
+        "user_email": "customer@bakery.com",
+        "user_message": "what is my most recent order?",
+        "ai_response": "OpenAI API key was not found. Please check your .env file."
     }
 ]

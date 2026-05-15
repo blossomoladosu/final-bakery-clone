@@ -206,6 +206,23 @@ class CustomerDashboard:
         st.subheader("My Orders")
         user_orders = self.manager.find_orders_by_customer(user["email"])
 
+        search_text = st.text_input("Search your orders", key="customer_order_search")
+
+        if search_text != "":
+            filtered_orders = []
+
+            for order in user_orders:
+                order_label = get_order_label(order)
+
+                if (
+                    search_text.lower() in order_label.lower()
+                    or search_text.lower() in order["item_name"].lower()
+                    or search_text.lower() in order["status"].lower()
+                ):
+                    filtered_orders.append(order)
+
+            user_orders = filtered_orders
+
         if user_orders == []:
             st.info("No orders yet.")
         else:
@@ -290,17 +307,24 @@ class CustomerDashboard:
 
                     st.markdown(f"**{status} Items**")
                     for line in status_lines:
-                        line_total = line.get("price", 0) * line.get("quantity", 0)
+
+                        line_total = line.get("total", 0)
+                        quantity = line.get("quantity", 1)
+                        if quantity != 0:
+                            item_price = line_total / quantity
+                        else:
+                            item_price = 0
+
                         if status == constants.ORDER_STATUS_CANCELLED:
                             st.markdown(
-                                f"- ~~{line.get('item_name', 'Unknown')}~~ x {line.get('quantity', 0)} @ {format_price(line.get('price', 0))} = {format_price(line_total)} "
+                                f"- ~~{line.get('item_name', 'Unknown')}~~ x {quantity} @ {format_price(item_price)} = {format_price(line_total)} "
                                 f"- {status}"
                             )
                         else:
                             st.markdown(
-                                f"- {line.get('item_name', 'Unknown')} x {line.get('quantity', 0)} @ {format_price(line.get('price', 0))} = {format_price(line_total)} "
+                                f"- {line.get('item_name', 'Unknown')} x {quantity} @ {format_price(item_price)} = {format_price(line_total)} "
                                 f"- {status}"
-                            )
+        )
 
                 if constants.ORDER_STATUS_CANCELLED in unique_statuses and constants.ORDER_STATUS_PLACED in unique_statuses:
                     st.info("Some items in this order were cancelled. Cancelled items are shown separately.")

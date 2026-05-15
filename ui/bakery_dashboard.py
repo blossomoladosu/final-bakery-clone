@@ -15,6 +15,12 @@ class BakeryDashboard:
 
         st.title("Blossom and Nandika's Bakery Delights")
 
+        st.info(
+            "Tester Logins:\n\n"
+            "Customer: customer@bakery.com | Password: 123sarahpassword\n\n"
+            "Owner: owner@bakery.com | Password: 456stevepassword"
+        )
+
         st.subheader("Log In")
 
         with st.container(border=True):

@@ -53,5 +53,27 @@
         "status": "Completed",
         "total": 1.5,
         "transaction_id": "95c99bef-68e7-4e62-8367-db6d7a211086"
+    },
+    {
+        "id": "54f823d1-aee9-4fc2-8b51-b719d0c8b431",
+        "order_number": "#1002",
+        "customer_email": "customer@bakery.com",
+        "item_id": 2,
+        "item_name": "Muffin",
+        "quantity": 2,
+        "status": "Cancelled",
+        "total": 3.0,
+        "transaction_id": "9574119f-dac1-4c50-9a09-c7d49529e938"
+    },
+    {
+        "id": "f922367c-7e64-4a7a-9ef5-973e28a0fb34",
+        "order_number": "#1002",
+        "customer_email": "customer@bakery.com",
+        "item_id": 4,
+        "item_name": "Croissant",
+        "quantity": 2,
+        "status": "Placed",
+        "total": 5.5,
+        "transaction_id": "9574119f-dac1-4c50-9a09-c7d49529e938"
     }
 ]
